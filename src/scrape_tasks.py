@@ -8,7 +8,15 @@ def get_using_request(request: Request, data):
     return response.text
 
 
-@browser()
+@browser(
+    cache=True,
+    max_retry=5,  # Retry up to 5 times, which is a good default
+    reuse_driver=True,  # Reuse the same driver for all tasks
+    output=None,
+    close_on_crash=True,
+    raise_exception=True,
+    create_error_logs=False,
+)
 def get_using_browser(driver: Driver, data):
-    driver.google_get(data["link"])
+    driver.google_get(data["link"], bypass_cloudflare=True)
     return driver.page_html
