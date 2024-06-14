@@ -19,4 +19,9 @@ def get_using_request(request: Request, data):
 )
 def get_using_browser(driver: Driver, data):
     driver.google_get(data["link"], bypass_cloudflare=True)
+
+    MESSAGE = "Tikriname jūsų naršyklę."
+
+    # Wait for the page to load
+
     return driver.page_html
