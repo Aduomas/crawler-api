@@ -11,7 +11,9 @@ task = api.create_sync_task(data, scraper_name="get_using_browser")
 task = api.get_task(task["id"])
 # Fetch the task results
 results = api.get_task_results(task["id"])
-print(results)
+# print(results)
+
+html = results["results"][0]["data"]
 
 # Abort the task
 # api.abort_task(task["id"])

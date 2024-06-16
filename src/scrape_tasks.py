@@ -1,5 +1,6 @@
 from botasaurus.browser import browser, Driver
 from botasaurus.request import request, Request
+import time
 
 
 @request
@@ -21,7 +22,9 @@ def get_using_browser(driver: Driver, data):
     driver.google_get(data["link"], bypass_cloudflare=True)
 
     MESSAGE = "Tikriname jūsų naršyklę."
-
-    # Wait for the page to load
+    elem = driver.get_element_containing_text(MESSAGE)
+    while elem:
+        time.sleep(1)
+        elem = driver.get_element_containing_text(MESSAGE)
 
     return driver.page_html
