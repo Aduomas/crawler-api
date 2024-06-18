@@ -21,10 +21,15 @@ def get_using_request(request: Request, data):
 def get_using_browser(driver: Driver, data):
     driver.google_get(data["link"], bypass_cloudflare=True)
 
+    timeout = 10
+
     MESSAGE = "Tikriname jūsų naršyklę."
     elem = driver.get_element_containing_text(MESSAGE)
     while elem:
         time.sleep(1)
         elem = driver.get_element_containing_text(MESSAGE)
+        timeout -= 1
+        if timeout == 0:
+            raise Exception("Timeout")
 
     return driver.page_html
