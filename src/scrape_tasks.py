@@ -32,7 +32,7 @@ def get_using_browser(driver: Driver, data):
         elem = driver.get_element_containing_text(MESSAGE)
         timeout -= 1
         if timeout == 0:
-            driver.save_screenshot()
+            save_screenshot()
             raise Exception("Timeout")
 
     return driver.page_html
