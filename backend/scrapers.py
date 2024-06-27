@@ -14,4 +14,3 @@ Server.add_scraper(get_using_browser, sorts=[Sort("link")])
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 Server.set_database_url(DATABASE_URL)
-Server.set_rate_limit(browser=2)
